@@ -1,0 +1,63 @@
+.clearfix() {
+  zoom: 1;
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+    visibility: hidden;
+    font-size: 0;
+    height: 0;
+  }
+}
+.button-size (@padding-vertical; @padding-horizontal; @font-size; @border-radius) {
+  padding: @padding-vertical @padding-horizontal;
+  font-size: @font-size;
+  border-radius: @border-radius;
+}
+.button-variant (@color; @background-color; @border-color) {
+  color: @color;
+  background-color: @background-color;
+  border-color: @border-color;
+
+  &:hover,
+  &:focus {
+    color: @color;
+    background-color: tint(@background-color, @button-hover-tint-percent);
+    border-color: tint(@border-color, @button-hover-tint-percent)
+  }
+
+  &:active {
+    color: @color;
+    background-color: shade(@background-color, @button-active-shade-percent);
+    border-color: shade(@border-color, @button-active-shade-percent);
+    outline: none;
+  }
+
+  &.is-active {
+    color: @color;
+    background-color: shade(@background-color, @button-active-shade-percent);
+    border-color: shade(@border-color, @button-active-shade-percent);
+  }
+
+  &.is-plain {
+    color: @button-default-color;
+    background-color: @button-default-fill;
+    border: 1px solid #bfcbd9;
+
+    &:hover,
+    &:focus {
+      color: @background-color;
+      background-color: @color-white;
+      border-color: @border-color;
+    }
+    &:active {
+      color: shade(@background-color, @button-active-shade-percent);
+      background-color: @color-white;
+      border-color: shade(@border-color, @button-active-shade-percent);
+      outline: none;
+    }
+  }
+}

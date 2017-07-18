@@ -1,0 +1,297 @@
+@button-prefix-cls: ~"@{vm-prefix}button";
+
+.@{button-prefix-cls} {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: @button-default-fill;
+  border: 1px solid #bfcbd9;
+  border-color: @button-default-border;
+  color: @button-default-color;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  & + .vm-button {
+	margin-left: 10px;
+  }
+
+  .button-size(@button-padding-vertical; @button-padding-horizontal; @button-font-size; @button-border-radius);
+
+  &:hover,
+  &:focus {
+	color: @color-primary;
+	border-color: @color-primary;
+  }
+
+  &:active {
+	color: shade(@color-primary, @button-active-shade-percent);
+	border-color: shade(@color-primary, @button-active-shade-percent);
+	outline: none;
+  }
+
+  &::-moz-focus-inner {
+	border: 0;
+  }
+
+  & [class*="vm-icon-"] {
+	& + span {
+	  margin-left: 5px;
+	}
+  }
+
+  span {
+	& > i {
+	  margin-left: 5px;
+	}
+  }
+
+  &.is-plain {
+	&:hover,
+	&:focus {
+	  color: @color-primary;
+	  background-color: @color-white;
+	  border-color: @color-primary;
+	}
+
+	&:active {
+	  color: shade(@color-primary, @button-active-shade-percent);
+	  background-color: @color-white;
+	  border-color: shade(@color-primary, @button-active-shade-percent);
+	  outline: none;
+	}
+  }
+
+  &.is-active {
+	color: shade(@color-primary, @button-active-shade-percent);
+	border: shade(@color-primary, @button-active-shade-percent);
+  }
+
+  &.is-disabled {
+	&,
+	&:hover,
+	&:focus {
+	  color: @button-disabled-color;
+	  cursor: not-allowed;
+	  background-image: none;
+	  background-color: @button-disabled-fill;
+	  border-color: @button-disabled-border;
+	}
+
+	&.vm-button--text {
+	  background-color: transparent;
+	}
+
+	&.is-plain {
+	  &,
+	  &:hover,
+	  &:focus {
+		color: #bfcbd9;
+		background-color: @color-white;
+		border-color: #d1dbe5;
+	  }
+	}
+  }
+
+  &.is-loading {
+	position: relative;
+	pointer-events: none;
+
+	&:before {
+	  pointer-events: none;
+	  content: '';
+	  position: absolute;
+	  left: -1px;
+	  top: -1px;
+	  right: -1px;
+	  bottom: -1px;
+	  border-radius: inherit;
+	  background-color: rgba(255, 255, 255, .35);
+	}
+  }
+
+  &--primary {
+	.button-variant(@button-primary-color; @button-primary-fill; @button-primary-border);
+  }
+
+  &--success {
+	.button-variant(@button-success-color; @button-success-fill; @button-success-border);
+  }
+
+  &--warning {
+	.button-variant(@button-warning-color; @button-warning-fill; @button-warning-border);
+  }
+
+  &--danger {
+	.button-variant(@button-danger-color; @button-danger-fill; @button-danger-border);
+  }
+
+  &--info {
+	.button-variant(@button-info-color; @button-info-fill; @button-info-border);
+  }
+
+  &--large {
+	.button-size(@button-large-padding-vertical; @button-large-padding-horizontal; @button-large-font-size; @button-border-radius);
+  }
+
+  &--default {
+	.button-size(@button-padding-vertical; @button-padding-horizontal; @button-font-size; @button-border-radius);
+  }
+
+  &--small {
+	.button-size(@button-small-padding-vertical; @button-small-padding-horizontal; @button-small-font-size; @button-border-radius);
+  }
+
+  &--mini {
+	.button-size(@button-mini-padding-vertical; @button-mini-padding-horizontal; @button-mini-font-size; @button-border-radius);
+  }
+
+  &--text {
+	border: none;
+	color: @color-primary;
+	background-color: transparent;
+	padding-left: 0;
+	padding-right: 0;
+
+	&:hover,
+	&:focus {
+	  color: tint(@color-primary, @button-hover-tint-percent);
+	}
+
+	&:active {
+	  color: tint(@color-primary, @button-active-shade-percent);
+	}
+  }
+
+  &-group {
+	display: inline-block;
+	vertical-align: middle;
+	.clearfix();
+
+	& .vm-button {
+	  float: left;
+	  position: relative;
+	  & + .vm-button {
+		margin-left: 0;
+	  }
+
+	  &:first-child {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	  }
+	  &:last-child {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	  }
+	  &:not(:first-child):not(:last-child) {
+		border-radius: 0;
+	  }
+
+	  &:not(:last-child) {
+		margin-right: -1px;
+	  }
+
+	  &:hover,
+	  &:focus,
+	  &:active {
+		z-index: 1;
+	  }
+
+	  &--active {
+		z-index: 1;
+	  }
+
+	  &--primary,
+	  &--success,
+	  &--warning,
+	  &--danger,
+	  &--info {
+		&:first-child {
+		  border-right-color: rgba(255, 255, 255, 0.5);
+		}
+		&:last-child {
+		  border-left-color: rgba(255, 255, 255, 0.5);
+		}
+		&:not(:first-child):not(:last-child) {
+		  border-left-color: rgba(255, 255, 255, 0.5);
+		  border-right-color: rgba(255, 255, 255, 0.5);
+		}
+	  }
+	}
+  }
+
+  &-group-vertical {
+	& .vm-button {
+	  display: block;
+	  float: none;
+	  width: 100%;
+	  max-width: 100%;
+
+	  &:first-child {
+		border-top-right-radius: @button-border-radius;
+		border-bottom-left-radius: 0;
+	  }
+	  &:last-child {
+		border-top-right-radius: 0;
+		border-bottom-left-radius: @button-border-radius;
+	  }
+	  &:not(:first-child):not(:last-child) {
+		border-radius: 0;
+	  }
+
+	  &:not(:last-child) {
+		margin-bottom: -1px;
+	  }
+
+	  &:hover,
+	  &:focus,
+	  &:active {
+		z-index: 1;
+	  }
+
+	  &--active {
+		z-index: 1;
+	  }
+
+	  .btn-color (@border-color) {
+		&:first-child {
+		  border-right-color: @border-color;
+		  border-bottom-color: rgba(255, 255, 255, 0.5);
+		}
+		&:last-child {
+		  border-left-color: @border-color;
+		  border-top-color: rgba(255, 255, 255, 0.5);
+		}
+		&:not(:first-child):not(:last-child) {
+		  border-right-color: @border-color;
+		  border-left-color: @border-color;
+		  border-top-color: rgba(255, 255, 255, 0.5);
+		  border-bottom-color: rgba(255, 255, 255, 0.5);
+		}
+	  }
+
+	  &--primary {
+		.btn-color (@button-primary-border)
+	  }
+	  &--success {
+		.btn-color (@button-success-border)
+	  }
+	  &--warning {
+		.btn-color (@button-warning-border)
+	  }
+	  &--danger {
+		.btn-color (@button-danger-border)
+	  }
+	  &--info {
+		.btn-color (@button-info-border)
+	  }
+	}
+  }
+}
