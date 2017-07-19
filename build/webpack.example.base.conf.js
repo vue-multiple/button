@@ -1,6 +1,7 @@
 var path = require('path')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var isProduction = process.env.NODE_ENV === 'production'
+var isDevelopment = process.env.NODE_ENV === 'development'
 
 module.exports = {
   entry: {
@@ -47,7 +48,7 @@ module.exports = {
         loader: 'url-loader',
         query: {
           limit: 10000,
-          name: path.posix.join('static', 'fonts/[name].[hash:7].[ext]')
+          name: path.posix.join((isDevelopment || isProduction) ? 'static' : '/static', 'fonts/[name].[hash:7].[ext]')
         }
       }
     ]
