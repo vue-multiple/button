@@ -1,7 +1,7 @@
 {
   "name": "vue-multiple-button",
   "description": "Vue-based button component",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "vue-multiple",
   "main": "lib/button.js",
   "files": [

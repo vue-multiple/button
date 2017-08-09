@@ -9,8 +9,13 @@ const install = function (Vue, opts = {}) {
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
-	Vue.component('VmButton', Button)
-	Vue.component('VmButtonGroup', ButtonGroup)
+	install(window.Vue)
 }
 
 export { Button, ButtonGroup }
+
+export default {
+  install,
+  Button,
+  ButtonGroup
+}
